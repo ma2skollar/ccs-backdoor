@@ -10,7 +10,7 @@ var app = express();
 
 app.get('/health/db', async (req, res) => {
   try {
-    await pool.query('SELECT 1'); // lightweight, doesn’t modify anything
+    await pool.query('SELECT 1');
     res.send('DB connection OK');
   } catch (err) {
     console.error(err);
