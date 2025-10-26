@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    ports:
+      # Map host PORT (from .env, defaults to 3000) to container 3000
+      - "${PORT:-3000}:3000"
+    restart: unless-stopped
+    networks:
+      - app-network
+    
+networks:
+  app-network:
+    driver: bridge
+    internal: false
