@@ -36,20 +36,16 @@ jobs:
 
       - name: Stop, rebuild, and run container
         run: |
-          export REMOTE_DIR=/root/server/ccs-backdoor
           ssh -i ~/.ssh/deploy_key root@138.199.202.19 bash <<'EOF'
             set -euo pipefail
-            cd $REMOTE_DIR
+            REMOTE_DIR="/root/server/ccs-backdoor"
+            cd "$REMOTE_DIR"
 
-            # Stop running containers (ignore if not running)
             docker compose -f compose.yml down || true
 
-            # Rebuild image(s) from the updated repo
             docker compose -f compose.yml build --pull
 
-            # Start the new containers in the background
             docker compose -f compose.yml up -d --remove-orphans
 
-            # Optional: clean up dangling images
             docker image prune -f || true
           EOF
