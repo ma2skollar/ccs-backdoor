@@ -31,7 +31,7 @@ jobs:
           rsync -az --delete \
             --exclude '.git' \
             --exclude 'node_modules' \
-            -- exclude '.env' \
+            --exclude '.env' \
             -e "ssh -i ~/.ssh/deploy_key" \
             ./ root@138.199.202.19:$REMOTE_DIR/
 
