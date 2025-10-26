@@ -41,11 +41,11 @@ jobs:
             REMOTE_DIR="/root/server/ccs-backdoor"
             cd "$REMOTE_DIR"
 
-            docker compose -f compose.yml down || true
+            docker-compose -f compose.yml down || true
 
-            docker compose -f compose.yml build --pull
+            docker-compose -f compose.yml build --pull
 
-            docker compose -f compose.yml up -d --remove-orphans
+            docker-compose -f compose.yml up -d --remove-orphans
 
             docker image prune -f || true
           EOF
